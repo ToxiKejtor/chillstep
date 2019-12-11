@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <ChillForm v-bind:title="formTitle" v-bind:description="formDescription" />
+    <ChillForm
+      v-bind:title="formTitle"
+      v-bind:description="formDescription"
+      @formSent="this.handleFormSent"
+    />
   </div>
 </template>
 
@@ -18,6 +22,13 @@ export default {
       formTitle: 'Best "Contact Us" Ever',
       formDescription: "We would love to get in touch with you!"
     };
+  },
+  methods: {
+    handleFormSent(sent) {
+      const { title, description } = sent;
+      this.formTitle = title;
+      this.formDescription = description;
+    }
   }
 };
 </script>

@@ -104,6 +104,10 @@ export default {
           { text: "new products", value: "products" },
           { text: "new blog articles", value: "articles" }
         ]
+      },
+      sent: {
+        title: "Thanks for sending form!",
+        description: "We will be in touch with you shortly!"
       }
     };
   },
@@ -112,7 +116,7 @@ export default {
       this.errors = [];
       if (!this.form.name) this.errors.push("Name required");
       if (!this.form.age) this.errors.push("Age is required");
-      if (!this.form.email || this.form.email.indexOf("@") === -1) {
+      if (!this.form.email || !this.form.email.includes("@")) {
         this.errors.push("Valid email address is required");
       }
       if (!this.form.reason)
@@ -121,7 +125,10 @@ export default {
       if (!this.errors.length) {
         this.loading = true;
         const success = await this.submitForm();
-        if (success) this.submitted = true;
+        if (success) {
+          this.submitted = true;
+          this.$emit("formSent", this.sent);
+        }
         this.loading = false;
       }
     },
