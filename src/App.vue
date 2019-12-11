@@ -1,17 +1,23 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <ChillForm v-bind:title="formTitle" v-bind:description="formDescription" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import ChillForm from "./components/ChillForm.vue";
 
 export default {
   name: "app",
   components: {
-    HelloWorld
+    ChillForm
+  },
+  data: function() {
+    return {
+      formTitle: 'Best "Contact Us" Ever',
+      formDescription: "We would love to get in touch with you!"
+    };
   }
 };
 </script>
