@@ -58,6 +58,7 @@
             <select
               class="c-form__select c-form__select--reason"
               v-model="form.reason"
+              name="reason"
             >
               <option
                 v-for="(option, index) in form.reasonOptions"
@@ -68,7 +69,7 @@
               </option>
             </select>
           </label>
-          <button type="submit">Submit</button>
+          <button type="submit" value="Submit">Submit</button>
         </form>
       </div>
     </div>
