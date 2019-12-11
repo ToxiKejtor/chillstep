@@ -6,6 +6,9 @@
         <div class="c-contact__description">{{ description }}</div>
       </header>
       <div class="c-form-container" v-if="!submitted">
+        <div class="c-form-loader" v-show="loading">
+          <Loader />
+        </div>
         <div class="c-form-errors" v-if="errors.length">
           <ul class="c-form-errors__ul">
             <li
@@ -73,8 +76,12 @@
 </template>
 
 <script>
+import Loader from "./Loader.vue";
 export default {
   name: "ChillForm",
+  components: {
+    Loader
+  },
   props: ["title", "description"],
   data: function() {
     return {
@@ -140,6 +147,9 @@ export default {
   margin-bottom: 50px;
 }
 
+.c-form-container {
+  position: relative;
+}
 .c-form {
   width: 300px;
   max-width: 100%;
@@ -148,6 +158,14 @@ export default {
 .c-form--loading {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.c-form-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .c-form__input {
