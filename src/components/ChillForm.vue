@@ -28,15 +28,25 @@
               type="text"
               name="name"
               class="c-form__input c-form__input--name"
-              v-model.trim="form.name"
+              v-model.trim.lazy="form.name"
               :placeholder="form.placeholders.name"
             />
           </label>
           <label>
             <input
+              type="email"
+              name="email"
+              class="c-form__input c-form__input--name"
+              v-model.trim.lazy="form.email"
+              :placeholder="form.placeholders.email"
+            />
+          </label>
+          <label>
+            <input
               type="number"
+              name="age"
               class="c-form__input c-form__input--age"
-              v-model="form.age"
+              v-model.lazy="form.age"
               :placeholder="form.placeholders.age"
             />
           </label>
@@ -75,9 +85,11 @@ export default {
         placeholders: {
           name: "Enter your name",
           age: "Your age",
+          email: "Email",
           reason: "What you're interested in"
         },
         name: null,
+        email: null,
         age: null,
         reason: "all-news",
         reasonOptions: [
@@ -93,6 +105,9 @@ export default {
       this.errors = [];
       if (!this.form.name) this.errors.push("Name required");
       if (!this.form.age) this.errors.push("Age is required");
+      if (!this.form.email || this.form.email.indexOf("@") === -1) {
+        this.errors.push("Valid email address is required");
+      }
       if (!this.form.reason)
         this.errors.push("Select what you're interested in");
 
