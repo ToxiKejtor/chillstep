@@ -29,6 +29,7 @@
           <FormInput
             v-model.trim="form.name"
             name="name"
+            label="name"
             :placeholder="placeholders.name"
             type="text"
             :required="true"
@@ -37,6 +38,7 @@
           <FormInput
             v-model.trim="form.email"
             name="email"
+            label="email"
             :placeholder="placeholders.email"
             type="email"
             :required="true"
@@ -44,6 +46,7 @@
           <FormInput
             v-model.trim="form.age"
             name="age"
+            label="age"
             :placeholder="placeholders.age"
             type="number"
             :required="true"

@@ -1,11 +1,10 @@
 <template>
   <div>
-    <label :for="id">{{ name }}</label>
+    <label :for="id">{{ label }}</label>
     <input
       :id="id"
       v-bind="$attrs"
       :type="type"
-      :name="name"
       :value="value"
       class="c-contact-form-input"
       @change="updateValue"
@@ -25,9 +24,9 @@ export default {
       type: String,
       required: true
     },
-    name: {
+    label: {
       type: String,
-      required: true
+      default: ""
     }
   },
   data() {
