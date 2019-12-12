@@ -48,23 +48,12 @@
             type="number"
             :required="true"
           />
-
-          <label>
-            {{ placeholders.reason }}
-            <select
-              v-model="form.reason"
-              class="c-contact-form__select c-contact-form__select--reason"
-              name="reason"
-            >
-              <option
-                v-for="option in reasonOptions"
-                :key="option.value"
-                :value="option.value"
-              >
-                {{ option.text }}
-              </option>
-            </select>
-          </label>
+          <ContactFormSelect
+            v-model="form.reason"
+            name="reason"
+            :placeholder="placeholders.reason"
+            :options="reasonOptions"
+          />
           <button type="submit" value="Submit">Submit</button>
         </form>
       </div>
@@ -75,13 +64,15 @@
 <script>
 import ContactFormLoader from "./ContactFormLoader.vue";
 import ContactFormInput from "./ContactFormInput.vue";
+import ContactFormSelect from "./ContactFormSelect.vue";
 
 const sleep = m => new Promise(r => setTimeout(r, m));
 
 export default {
   components: {
     ContactFormLoader,
-    ContactFormInput
+    ContactFormInput,
+    ContactFormSelect
   },
 
   props: {
