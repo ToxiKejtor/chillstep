@@ -1,6 +1,8 @@
 <template>
-  <label>
+  <div>
+    <label :for="id">{{ name }}</label>
     <input
+      :id="id"
       :type="type"
       :name="name"
       :placeholder="placeholder"
@@ -9,7 +11,7 @@
       class="c-contact-form-input"
       @change="updateValue($event.target.value)"
     />
-  </label>
+  </div>
 </template>
 
 <script>
@@ -34,6 +36,10 @@ export default {
     },
     required: {
       type: Boolean,
+      required: true
+    },
+    id: {
+      type: String,
       required: true
     }
   },

@@ -1,22 +1,21 @@
 <template>
   <div>
-    <label>
-      {{ placeholder }}
-      <select
-        class="c-contact-form-select"
-        :name="name"
-        :value="value"
-        @change="updateValue($event.target.value)"
+    <label :for="id">{{ name }}</label>
+    <select
+      :id="id"
+      class="c-contact-form-select"
+      :name="name"
+      :value="value"
+      @change="updateValue($event.target.value)"
+    >
+      <option
+        v-for="option in options"
+        :key="option.value"
+        :value="option.value"
       >
-        <option
-          v-for="option in options"
-          :key="option.value"
-          :value="option.value"
-        >
-          {{ option.text }}
-        </option>
-      </select>
-    </label>
+        {{ option.text }}
+      </option>
+    </select>
   </div>
 </template>
 
@@ -38,6 +37,10 @@ export default {
     options: {
       type: Array,
       required: true
+    },
+    id: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -52,3 +55,8 @@ export default {
   }
 };
 </script>
+<style>
+.c-contact-form-select {
+  display: block;
+}
+</style>

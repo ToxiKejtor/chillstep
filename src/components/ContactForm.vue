@@ -27,6 +27,7 @@
           @submit.prevent="submitForm"
         >
           <ContactFormInput
+            id="c-contact-form-input--name"
             v-model.trim="form.name"
             name="name"
             :placeholder="placeholders.name"
@@ -35,6 +36,7 @@
           />
 
           <ContactFormInput
+            id="c-contact-form-input--email"
             v-model.trim="form.email"
             name="email"
             :placeholder="placeholders.email"
@@ -42,6 +44,7 @@
             :required="true"
           />
           <ContactFormInput
+            id="c-contact-form-input--age"
             v-model.trim="form.age"
             name="age"
             :placeholder="placeholders.age"
@@ -49,6 +52,7 @@
             :required="true"
           />
           <ContactFormSelect
+            id="c-contact-form-select--age"
             v-model="form.reason"
             name="reason"
             :placeholder="placeholders.reason"
