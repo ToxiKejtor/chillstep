@@ -6,7 +6,7 @@
       :placeholder="placeholder"
       :required="required"
       :value="value"
-      class="c-contact-form-input c-contact-form-input--email"
+      class="c-contact-form-input"
       @change="updateValue($event.target.value)"
     />
   </label>

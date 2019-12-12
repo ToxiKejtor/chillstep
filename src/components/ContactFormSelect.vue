@@ -3,7 +3,7 @@
     <label>
       {{ placeholder }}
       <select
-        class="c-contact-form-select c-contact-form-select--reason"
+        class="c-contact-form-select"
         :name="name"
         :value="value"
         @change="updateValue($event.target.value)"
