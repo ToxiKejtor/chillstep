@@ -4,6 +4,7 @@
       :type="type"
       :name="name"
       :placeholder="placeholder"
+      :required="required"
       :value="value"
       class="c-contact-form-input c-contact-form-input--email"
       @change="updateValue($event.target.value)"
