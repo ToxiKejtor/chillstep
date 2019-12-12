@@ -1,20 +1,20 @@
 <template>
-  <section class="c-contact">
-    <div class="c-contact__inner">
-      <header class="c-contact__header">
-        <h2 class="c-contact__title">{{ title }}</h2>
-        <div class="c-contact__description">{{ description }}</div>
+  <section class="c-contact-form">
+    <div class="c-contact-form__inner">
+      <header class="c-contact-form__header">
+        <h2 class="c-contact-form__title">{{ title }}</h2>
+        <div class="c-contact-form__description">{{ description }}</div>
       </header>
-      <div v-if="!submitted" class="c-form-container">
-        <div v-show="loading" class="c-form-loader">
+      <div v-if="!submitted" class="c-contact-form-container">
+        <div v-show="loading" class="c-contact-form-loader">
           <ContactFormLoader />
         </div>
-        <div v-if="errors.length" class="c-form-errors">
-          <ul class="c-form-errors__ul">
+        <div v-if="errors.length" class="c-contact-form-errors">
+          <ul class="c-contact-form-errors__ul">
             <li
               v-for="(error, index) in errors"
               :key="index"
-              class="c-form-errors__li"
+              class="c-contact-form-errors__li"
             >
               {{ error }}
             </li>
@@ -22,8 +22,8 @@
         </div>
         <form
           id="c-contact-form-1"
-          class="c-form"
-          :class="{ 'c-form--loading': loading }"
+          class="c-contact-form__form"
+          :class="{ 'c-contact-form--loading': loading }"
           @submit.prevent="validateForm"
         >
           <label>
@@ -31,7 +31,7 @@
               v-model.trim.lazy="form.name"
               type="text"
               name="name"
-              class="c-form__input c-form__input--name"
+              class="c-contact-form__input c-contact-form__input--name"
               :placeholder="placeholders.name"
             />
           </label>
@@ -41,7 +41,7 @@
               v-model.trim.lazy="form.email"
               type="email"
               name="email"
-              class="c-form__input c-form__input--name"
+              class="c-contact-form__input c-contact-form__input--email"
               :placeholder="placeholders.email"
             />
           </label>
@@ -51,7 +51,7 @@
               v-model.lazy="form.age"
               type="number"
               name="age"
-              class="c-form__input c-form__input--age"
+              class="c-contact-form__input c-contact-form__input--age"
               :placeholder="placeholders.age"
             />
           </label>
@@ -60,7 +60,7 @@
             {{ placeholders.reason }}
             <select
               v-model="form.reason"
-              class="c-form__select c-form__select--reason"
+              class="c-contact-form__select c-contact-form__select--reason"
               name="reason"
             >
               <option
@@ -166,30 +166,30 @@ export default {
 </script>
 
 <style>
-.c-contact {
+.c-contact-form {
   width: 600px;
   max-width: 100%;
   margin: 0 auto;
 }
 
-.c-contact__header {
+.c-contact-form__header {
   margin-bottom: 50px;
 }
 
-.c-form-container {
+.c-contact-form-container {
   position: relative;
 }
-.c-form {
+.c-contact-form__form {
   width: 300px;
   max-width: 100%;
   margin: 0 auto;
 }
-.c-form--loading {
+.c-contact-form--loading {
   opacity: 0.5;
   pointer-events: none;
 }
 
-.c-form-loader {
+.c-contact-form-loader {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -197,12 +197,12 @@ export default {
   z-index: 1;
 }
 
-.c-form__input {
+.c-contact-form__input {
   display: block;
   width: 100%;
   margin-bottom: 10px;
 }
-.c-form-errors {
+.c-contact-form-errors {
   color: #ff0000;
   margin-bottom: 20px;
 }
