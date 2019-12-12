@@ -26,8 +26,7 @@
           :class="{ 'c-contact-form--loading': loading }"
           @submit.prevent="submitForm"
         >
-          <ContactFormInput
-            id="c-contact-form-input--name"
+          <FormInput
             v-model.trim="form.name"
             name="name"
             :placeholder="placeholders.name"
@@ -35,23 +34,21 @@
             :required="true"
           />
 
-          <ContactFormInput
-            id="c-contact-form-input--email"
+          <FormInput
             v-model.trim="form.email"
             name="email"
             :placeholder="placeholders.email"
             type="email"
             :required="true"
           />
-          <ContactFormInput
-            id="c-contact-form-input--age"
+          <FormInput
             v-model.trim="form.age"
             name="age"
             :placeholder="placeholders.age"
             type="number"
             :required="true"
           />
-          <ContactFormSelect
+          <FormSelect
             id="c-contact-form-select--age"
             v-model="form.reason"
             name="reason"
@@ -67,16 +64,16 @@
 
 <script>
 import ContactFormLoader from "./ContactFormLoader.vue";
-import ContactFormInput from "./ContactFormInput.vue";
-import ContactFormSelect from "./ContactFormSelect.vue";
+import FormInput from "./FormInput.vue";
+import FormSelect from "./FormSelect.vue";
 
 const sleep = m => new Promise(r => setTimeout(r, m));
 
 export default {
   components: {
     ContactFormLoader,
-    ContactFormInput,
-    ContactFormSelect
+    FormInput,
+    FormSelect
   },
 
   props: {
@@ -109,7 +106,7 @@ export default {
     placeholders: () => ({
       name: "Enter your name",
       age: "Your age",
-      email: "Email",
+      email: "Your Email",
       reason: "What you're interested in"
     }),
 

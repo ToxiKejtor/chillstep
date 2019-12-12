@@ -3,23 +3,22 @@
     <label :for="id">{{ name }}</label>
     <input
       :id="id"
+      v-bind="$attrs"
       :type="type"
       :name="name"
-      :placeholder="placeholder"
-      :required="required"
       :value="value"
       class="c-contact-form-input"
-      @change="updateValue($event.target.value)"
+      @change="updateValue"
     />
   </div>
 </template>
 
 <script>
 export default {
+  inheritAttrs: false,
   props: {
     value: {
-      type: String,
-      Number,
+      type: [String, Number],
       default: ""
     },
     type: {
@@ -29,28 +28,19 @@ export default {
     name: {
       type: String,
       required: true
-    },
-    placeholder: {
-      type: String,
-      required: true
-    },
-    required: {
-      type: Boolean,
-      required: true
-    },
-    id: {
-      type: String,
-      required: true
     }
   },
   data() {
     return {
-      input: ""
+      id: this.getRandomId(1, Math.pow(10, 8))
     };
   },
   methods: {
-    updateValue(value) {
-      this.$emit("input", value);
+    updateValue(event) {
+      this.$emit("input", event.target.value);
+    },
+    getRandomId(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
     }
   }
 };
