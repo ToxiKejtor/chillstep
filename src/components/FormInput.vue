@@ -1,20 +1,23 @@
 <template>
-  <div>
-    <label :for="id">{{ label }}</label>
+  <FormField :id="id" :label="label">
     <input
       :id="id"
       v-bind="$attrs"
       :type="type"
       :value="value"
-      class="c-contact-form-input"
+      class="c-form-input"
       @change="updateValue"
     />
-  </div>
+  </FormField>
 </template>
 
 <script>
 import getRandomId from "../utils/getRandomId";
+import FormField from "./FormField.vue";
 export default {
+  components: {
+    FormField
+  },
   inheritAttrs: false,
   props: {
     value: {
@@ -44,9 +47,10 @@ export default {
 </script>
 
 <style>
-.c-contact-form-input {
+.c-form-input {
   display: block;
   width: 100%;
-  margin-bottom: 10px;
+  font-size: 14px;
+  padding: 5px;
 }
 </style>

@@ -21,7 +21,6 @@
           </ul>
         </div>
         <form
-          id="c-contact-form-1"
           class="c-contact-form__form"
           :class="{ 'c-contact-form--loading': loading }"
           @submit.prevent="submitForm"
@@ -32,7 +31,6 @@
             label="Name"
             :placeholder="placeholders.name"
             type="text"
-            required="true"
           />
 
           <FormInput
@@ -41,7 +39,6 @@
             label="Email"
             :placeholder="placeholders.email"
             type="email"
-            required="true"
           />
           <FormInput
             v-model.trim="form.age"
@@ -49,16 +46,17 @@
             label="Age"
             :placeholder="placeholders.age"
             type="number"
-            required="true"
           />
           <FormSelect
             v-model="form.reason"
             name="reason"
-            label="Reason"
+            label="What you're interested in"
             :placeholder="placeholders.reason"
             :options="reasonOptions"
           />
-          <button type="submit" value="Submit">Submit</button>
+          <button type="submit" class="c-contact-form__submit" value="Submit">
+            Submit
+          </button>
         </form>
       </div>
     </div>
@@ -177,6 +175,14 @@ export default {
 .c-contact-form--loading {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.c-contact-form__submit {
+  font-size: 14px;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 .c-contact-form-loading-state {
