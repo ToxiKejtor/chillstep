@@ -6,7 +6,7 @@
         <div class="c-contact-form__description">{{ description }}</div>
       </header>
       <div v-if="!submitted" class="c-contact-form-container">
-        <div v-show="loading" class="c-contact-form-loader">
+        <div v-show="loading" class="c-contact-form-loading-state">
           <ContactFormLoader />
         </div>
         <div v-if="errors.length" class="c-contact-form-errors">
@@ -189,7 +189,7 @@ export default {
   pointer-events: none;
 }
 
-.c-contact-form-loader {
+.c-contact-form-loading-state {
   position: absolute;
   top: 50%;
   left: 50%;
