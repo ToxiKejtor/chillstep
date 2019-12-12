@@ -26,35 +26,28 @@
           :class="{ 'c-contact-form--loading': loading }"
           @submit.prevent="submitForm"
         >
-          <label>
-            <input
-              v-model.trim.lazy="form.name"
-              type="text"
-              name="name"
-              class="c-contact-form__input c-contact-form__input--name"
-              :placeholder="placeholders.name"
-            />
-          </label>
+          <ContactFormInput
+            v-model.trim="form.name"
+            name="name"
+            :placeholder="placeholders.name"
+            type="text"
+            :required="true"
+          />
 
-          <label>
-            <input
-              v-model.trim.lazy="form.email"
-              type="email"
-              name="email"
-              class="c-contact-form__input c-contact-form__input--email"
-              :placeholder="placeholders.email"
-            />
-          </label>
-
-          <label>
-            <input
-              v-model.lazy="form.age"
-              type="number"
-              name="age"
-              class="c-contact-form__input c-contact-form__input--age"
-              :placeholder="placeholders.age"
-            />
-          </label>
+          <ContactFormInput
+            v-model.trim="form.email"
+            name="email"
+            :placeholder="placeholders.email"
+            type="email"
+            :required="true"
+          />
+          <ContactFormInput
+            v-model.trim="form.age"
+            name="age"
+            :placeholder="placeholders.age"
+            type="number"
+            :required="true"
+          />
 
           <label>
             {{ placeholders.reason }}
@@ -81,12 +74,14 @@
 
 <script>
 import ContactFormLoader from "./ContactFormLoader.vue";
+import ContactFormInput from "./ContactFormInput.vue";
 
 const sleep = m => new Promise(r => setTimeout(r, m));
 
 export default {
   components: {
-    ContactFormLoader
+    ContactFormLoader,
+    ContactFormInput
   },
 
   props: {
