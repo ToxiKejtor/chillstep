@@ -12,8 +12,8 @@
         <div v-if="errors.length" class="c-contact-form-errors">
           <ul class="c-contact-form-errors__ul">
             <li
-              v-for="(error, index) in errors"
-              :key="index"
+              v-for="error in errors"
+              :key="error"
               class="c-contact-form-errors__li"
             >
               {{ error }}
