@@ -183,11 +183,6 @@ export default {
   z-index: 1;
 }
 
-.c-contact-form__input {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-}
 .c-contact-form-errors {
   color: #ff0000;
   margin-bottom: 20px;
