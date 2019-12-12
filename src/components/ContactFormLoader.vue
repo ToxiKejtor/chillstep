@@ -1,15 +1,15 @@
 <template>
-  <div class="c-loader"></div>
+  <div class="c-contact-form-loader"></div>
 </template>
 
 <script>
 export default {
-  name: "Loader"
+  name: "FormLoader"
 };
 </script>
 
-<style scoped>
-.c-loader {
+<style>
+.c-contact-form-loader {
   display: inline-block;
   border: 8px solid #f3f3f3;
   border-top: 8px solid #3498db;

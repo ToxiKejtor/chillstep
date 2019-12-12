@@ -1,21 +1,21 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <ChillForm
-      v-bind:title="formTitle"
-      v-bind:description="formDescription"
-      @formSent="this.handleFormSent"
+    <ContactForm
+      :title="formTitle"
+      :description="formDescription"
+      @formSent="handleFormSent"
     />
   </div>
 </template>
 
 <script>
-import ChillForm from "./components/ChillForm.vue";
+import ContactForm from "./components/ContactForm.vue";
 
 export default {
-  name: "app",
+  name: "App",
   components: {
-    ChillForm
+    ContactForm
   },
   data: function() {
     return {

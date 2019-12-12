@@ -5,16 +5,16 @@
         <h2 class="c-contact__title">{{ title }}</h2>
         <div class="c-contact__description">{{ description }}</div>
       </header>
-      <div class="c-form-container" v-if="!submitted">
-        <div class="c-form-loader" v-show="loading">
-          <Loader />
+      <div v-if="!submitted" class="c-form-container">
+        <div v-show="loading" class="c-form-loader">
+          <ContactFormLoader />
         </div>
-        <div class="c-form-errors" v-if="errors.length">
+        <div v-if="errors.length" class="c-form-errors">
           <ul class="c-form-errors__ul">
             <li
-              class="c-form-errors__li"
               v-for="(error, index) in errors"
               :key="index"
+              class="c-form-errors__li"
             >
               {{ error }}
             </li>
@@ -28,41 +28,44 @@
         >
           <label>
             <input
+              v-model.trim.lazy="form.name"
               type="text"
               name="name"
               class="c-form__input c-form__input--name"
-              v-model.trim.lazy="form.name"
-              :placeholder="form.placeholders.name"
+              :placeholder="placeholders.name"
             />
           </label>
+
           <label>
             <input
+              v-model.trim.lazy="form.email"
               type="email"
               name="email"
               class="c-form__input c-form__input--name"
-              v-model.trim.lazy="form.email"
-              :placeholder="form.placeholders.email"
+              :placeholder="placeholders.email"
             />
           </label>
+
           <label>
             <input
+              v-model.lazy="form.age"
               type="number"
               name="age"
               class="c-form__input c-form__input--age"
-              v-model.lazy="form.age"
-              :placeholder="form.placeholders.age"
+              :placeholder="placeholders.age"
             />
           </label>
+
           <label>
-            {{ form.placeholders.reason }}
+            {{ placeholders.reason }}
             <select
-              class="c-form__select c-form__select--reason"
               v-model="form.reason"
+              class="c-form__select c-form__select--reason"
               name="reason"
             >
               <option
-                v-for="(option, index) in form.reasonOptions"
-                :key="index"
+                v-for="option in reasonOptions"
+                :key="option.value"
                 :value="option.value"
               >
                 {{ option.text }}
@@ -77,43 +80,63 @@
 </template>
 
 <script>
-import Loader from "./Loader.vue";
+import ContactFormLoader from "./ContactFormLoader.vue";
+
+const sleep = m => new Promise(r => setTimeout(r, m));
+
 export default {
-  name: "ChillForm",
   components: {
-    Loader
+    ContactFormLoader
   },
-  props: ["title", "description"],
-  data: function() {
+
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+
+    description: {
+      type: String,
+      default: ""
+    }
+  },
+
+  data() {
     return {
       errors: [],
       submitted: false,
       loading: false,
       form: {
-        placeholders: {
-          name: "Enter your name",
-          age: "Your age",
-          email: "Email",
-          reason: "What you're interested in"
-        },
         name: null,
         email: null,
         age: null,
-        reason: "all-news",
-        reasonOptions: [
-          { text: "all news", value: "all-news" },
-          { text: "new products", value: "products" },
-          { text: "new blog articles", value: "articles" }
-        ]
-      },
-      sent: {
-        title: "Thanks for sending form!",
-        description: "We will be in touch with you shortly!"
+        reason: "all-news"
       }
     };
   },
+
+  computed: {
+    placeholders: () => ({
+      name: "Enter your name",
+      age: "Your age",
+      email: "Email",
+      reason: "What you're interested in"
+    }),
+
+    reasonOptions: () => [
+      { text: "all news", value: "all-news" },
+      { text: "new products", value: "products" },
+      { text: "new blog articles", value: "articles" }
+    ],
+
+    sent: () => ({
+      title: "Thanks for sending form!",
+      description: "We will be in touch with you shortly!"
+    })
+  },
+
   methods: {
-    validateForm: async function() {
+    async validateForm() {
       this.errors = [];
       if (!this.form.name) this.errors.push("Name required");
       if (!this.form.age) this.errors.push("Age is required");
@@ -133,18 +156,16 @@ export default {
         this.loading = false;
       }
     },
-    submitForm: async function() {
-      await this.sleep(1500);
+
+    async submitForm() {
+      await sleep(1500);
       return true;
-    },
-    sleep: async function(m) {
-      return new Promise(r => setTimeout(r, m));
     }
   }
 };
 </script>
 
-<style scoped>
+<style>
 .c-contact {
   width: 600px;
   max-width: 100%;
