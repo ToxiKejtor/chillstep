@@ -24,7 +24,7 @@
           id="c-contact-form-1"
           class="c-contact-form__form"
           :class="{ 'c-contact-form--loading': loading }"
-          @submit.prevent="validateForm"
+          @submit.prevent="submitForm"
         >
           <label>
             <input
@@ -136,7 +136,7 @@ export default {
   },
 
   methods: {
-    async validateForm() {
+    async submitForm() {
       this.errors = [];
       if (!this.form.name) this.errors.push("Name required");
       if (!this.form.age) this.errors.push("Age is required");
@@ -148,7 +148,7 @@ export default {
 
       if (!this.errors.length) {
         this.loading = true;
-        const success = await this.submitForm();
+        const success = await this.sendForm();
         if (success) {
           this.submitted = true;
           this.$emit("formSent", this.sent);
@@ -157,7 +157,7 @@ export default {
       }
     },
 
-    async submitForm() {
+    async sendForm() {
       await sleep(1500);
       return true;
     }
