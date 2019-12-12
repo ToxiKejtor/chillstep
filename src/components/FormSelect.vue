@@ -1,10 +1,10 @@
 <template>
   <div>
-    <label :for="id">{{ name }}</label>
+    <label :for="id">{{ label }}</label>
     <select
       :id="id"
+      v-bind="$attrs"
       class="c-contact-form-select"
-      :name="name"
       :value="value"
       @change="updateValue($event.target.value)"
     >
@@ -20,17 +20,11 @@
 </template>
 
 <script>
+import getRandomId from "../utils/getRandomId";
 export default {
+  inheritAttrs: false,
   props: {
     value: {
-      type: String,
-      required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    placeholder: {
       type: String,
       required: true
     },
@@ -38,14 +32,14 @@ export default {
       type: Array,
       required: true
     },
-    id: {
+    label: {
       type: String,
-      required: true
+      default: ""
     }
   },
   data() {
     return {
-      input: ""
+      id: getRandomId(1, Math.pow(10, 8))
     };
   },
   methods: {

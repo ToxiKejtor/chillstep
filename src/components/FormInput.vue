@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import getRandomId from "../utils/getRandomId";
 export default {
   inheritAttrs: false,
   props: {
@@ -31,15 +32,12 @@ export default {
   },
   data() {
     return {
-      id: this.getRandomId(1, Math.pow(10, 8))
+      id: getRandomId(1, Math.pow(10, 8))
     };
   },
   methods: {
     updateValue(event) {
       this.$emit("input", event.target.value);
-    },
-    getRandomId(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
     }
   }
 };

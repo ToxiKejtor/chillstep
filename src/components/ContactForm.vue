@@ -29,32 +29,32 @@
           <FormInput
             v-model.trim="form.name"
             name="name"
-            label="name"
+            label="Name"
             :placeholder="placeholders.name"
             type="text"
-            :required="true"
+            required="true"
           />
 
           <FormInput
             v-model.trim="form.email"
             name="email"
-            label="email"
+            label="Email"
             :placeholder="placeholders.email"
             type="email"
-            :required="true"
+            required="true"
           />
           <FormInput
             v-model.trim="form.age"
             name="age"
-            label="age"
+            label="Age"
             :placeholder="placeholders.age"
             type="number"
-            :required="true"
+            required="true"
           />
           <FormSelect
-            id="c-contact-form-select--age"
             v-model="form.reason"
             name="reason"
+            label="Reason"
             :placeholder="placeholders.reason"
             :options="reasonOptions"
           />
